@@ -1,0 +1,8 @@
+# Node modules
+node_modules
+
+# Compiled js folder
+lib
+
+# Temporary files folder
+.tmp

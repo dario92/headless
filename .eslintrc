@@ -1,0 +1,16 @@
+---
+  parser: babel-eslint
+  extends:
+    - airbnb-base
+  globals:
+    __DEV__: true
+    IMPORT_STATUS: true
+    fetch: true
+    location: true,
+    window: true,
+    document: ture,
+  ecmaFeatures:
+    jsx: true
+  rules:
+    max-len:
+      - error

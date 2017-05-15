@@ -32,9 +32,9 @@ export default class Chrome {
 
   /**
    * @name startup
-   * @desc Spawn chrome in headless mode in a child_process and cache the it.
-   * If chrome is already running in headless mode it won't create a new instace and no
-   * child_process will be created, so when `close` this called the running instace will
+   * @desc Spawn chrome in headless mode in a child_process and cache the id.
+   * If chrome is already running in headless mode it won't create a new instance and no
+   * child_process will be created, so when `close` is called the running instace will
    * not be killed
    * @public
    * @return {Promise<Chrome>}
@@ -46,7 +46,7 @@ export default class Chrome {
 
     if (!isAlreadyRunning) {
       this.cp = await this.spawnHeadlessChrome();
-      log('Chrome was succefully lunched in headless mode...');
+      log('Chrome was successfully launched in headless mode...');
     } else {
       log(yellow('Chrome is already running in headless mode...'));
     }

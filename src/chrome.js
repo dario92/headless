@@ -3,16 +3,14 @@ import { spawn } from 'child_process';
 import createQueue from 'async.queue';
 import getDefaultChromeBinary from './libs/get-chrome-binary';
 import log, { yellow } from './libs/log';
-import Tab, { TAB_REDY_EVENT, TAB_INIT_ERROR_EVENT, TAB_CLOSE_EVENT } from './tab';
-
-
-const DEFAULT_CHROME_ARG = [
-  '--headless',
-  '--remote-debugging-port=9222',
-  '--disable-gpu',
-];
-
-const DEFAULT_MAX_TABS = 10;
+import Tab from './tab';
+import {
+  DEFAULT_CHROME_ARG,
+  DEFAULT_MAX_TABS,
+  TAB_REDY_EVENT,
+  TAB_INIT_ERROR_EVENT,
+  TAB_CLOSE_EVENT,
+} from './constants';
 
 export default class Chrome {
   binary = null;
@@ -121,6 +119,8 @@ export default class Chrome {
     tab.once(TAB_REDY_EVENT, () => onTabReady(tab));
     tab.once(TAB_INIT_ERROR_EVENT, (e, err) => done(err));
     tab.once(TAB_CLOSE_EVENT, () => done());
+
+    await tab.init();
   }
 
   /**

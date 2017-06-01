@@ -4,10 +4,7 @@ import log, { red } from './libs/log';
 import navigate from './mixins/navigate.mixin';
 import capture from './mixins/capture.mixin';
 import device from './mixins/device.mixin';
-
-export const TAB_CLOSE_EVENT = 'TAB_CLOSE_EVENT';
-export const TAB_REDY_EVENT = 'TAB_REDY_EVENT';
-export const TAB_INIT_ERROR_EVENT = 'TAB_INIT_ERROR_EVENT';
+import { TAB_REDY_EVENT, TAB_INIT_ERROR_EVENT, TAB_CLOSE_EVENT } from './constants';
 
 @navigate
 @capture
@@ -16,11 +13,6 @@ export default class Tab extends EventEmitter {
   client = null;
   info = null;
 
-  constructor() {
-    super();
-    this.init();
-  }
-
   async init() {
     try {
       this.info = await CRI.New();
@@ -28,7 +20,7 @@ export default class Tab extends EventEmitter {
       this.emit(TAB_REDY_EVENT);
       log(`Created new tab ${this.info.id}`);
     } catch (err) {
-      log(red('An error happens while initialising tab: '), err);
+      log(red('An error happened while initialising tab:'), err);
       this.emit(TAB_INIT_ERROR_EVENT);
     }
   }

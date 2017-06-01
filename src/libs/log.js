@@ -1,10 +1,10 @@
 /* eslint no-console:0  */
 
 export default (...args) => {
-  console.log(...[
-    '\x1b[35m[headless]\x1b[0m',
-    ...args,
-  ]);
+  // console.log(...[
+  //   '\x1b[35m[headless]\x1b[0m',
+  //   ...args,
+  // ]);
 };
 
 export function red(input) {
